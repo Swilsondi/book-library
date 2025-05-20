@@ -11,6 +11,22 @@ const deletedList = document.querySelector('#deleted-book-list');
 const bookLibrary = [];
 const deletedBooks = [];
 
+function loadFromLocal(){
+    const storedBooks = localStorage.getItem('bookLibrary');
+    const storedDeleted = localStorage.getItem('deletedBooks');
+    if (storedBooks) bookLibrary.push(...JSON.parse(storedBooks));
+    if (storedDeleted) deletedBooks.push(...JSON.parse(storedDeleted));
+    renderUi();
+    renderDelete();
+}
+
+loadFromLocal();
+
+function saveToLocal (){
+    localStorage.setItem('bookLibrary', JSON.stringify(bookLibrary));
+    localStorage.setItem('deletedBooks', JSON.stringify(deletedBooks));
+}
+
 // Handle form submission: add book, update UI
 bookForm.addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent page reload
@@ -30,6 +46,7 @@ function addBook() {
     bookLibrary.push(book); // Add to main array
     bookForm.reset();       // Clear the form fields
     console.log(bookLibrary); // Debug: log current library
+    saveToLocal();
 }
 
 // Render all books in the main library
@@ -64,6 +81,7 @@ function renderUi() {
             bookLibrary.splice(i, 1);
             renderUi();
             renderDelete();
+            saveToLocal();
         });
 
         // Add all elements to the card and then to the list
@@ -99,3 +117,5 @@ function renderDelete() {
         deletedList.append(deletedCard);
     }
 }
+
+
