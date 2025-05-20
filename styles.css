@@ -171,6 +171,47 @@ button:hover, button:focus {
 .book-card button:hover {
   background: #d90429;
 }
+/* Deleted Books Section */
+.deleted-library {
+  margin-top: 2.5rem;
+  background: #f8d7da;
+  border-radius: 14px;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 12px rgba(220, 53, 69, 0.07);
+}
+
+.deleted-library h2 {
+  color: #b71c1c;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+#deleted-book-list.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.deleted-library .book-card {
+  background: #fff0f1;
+  border: 1.5px solid #f5c2c7;
+  color: #b71c1c;
+  opacity: 0.7;
+  filter: grayscale(0.3);
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.08);
+}
+
+.deleted-library .book-card h3,
+.deleted-library .book-card .meta,
+.deleted-library .book-card .genre,
+.deleted-library .book-card .pages {
+  color: #b71c1c;
+}
+
+.deleted-library .book-card .actions {
+  display: none; /* Hide actions for deleted books */
+}
 
 @media (max-width: 700px) {
   main {
